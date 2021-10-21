@@ -32,7 +32,6 @@ class ViewController: UIViewController {
         fromPicker.delegate = self
         toPicker.dataSource = self
         toPicker.delegate = self
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -91,20 +90,14 @@ class ViewController: UIViewController {
                     print("error")
                     seal.reject(error)
                 }
-                
             }
-            
         }
     }
     
     @IBAction func getExchangeRate(_ sender: Any) {
-        if fromCurrency == "" || toCurrency == ""{
-            return
-        }
         getExchangeRate(fromCurrency, toCurrency)
             .done { fromCurrencyRate, toCurrencyRate in
                 self.Rates.text = "1 \(self.fromCurrency) = \(toCurrencyRate/fromCurrencyRate) \(self.toCurrency)"
-                
             }
             .catch { error in
                 print(error)
